@@ -12,6 +12,7 @@ seaborn = "^0.13.2"
 ipykernel = "^6.29.3"
 opencv-python = "^4.9.0.80"
 streamlit = "^1.32.2"
+bokeh = "^3.4.0"
 
 
 [build-system]

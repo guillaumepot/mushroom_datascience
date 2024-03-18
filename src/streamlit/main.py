@@ -2,8 +2,9 @@ import streamlit as st
 
 from homepage import load_home_page
 from originaldatasetpage import load_original_dataset_page
-from datavisualisationpage import load_data_visualization_page
+from dataanalysispage import load_data_visualization_page
 
+from streamlit_vars import addSidebarFooter
 
 ## Cache ##
 
@@ -18,26 +19,8 @@ def generate_cache():
 st.sidebar.title("Mushroom Observations and Classification project")
 
 # Pages
-pages=["Home","Original Dataset","Data Vizualization","Modelization","Evaluation"]
+pages=["Home","Original Dataset","Data Analysis","Modelization","Evaluation"]
 page=st.sidebar.radio("", pages)
-
-
-
-# Sidebar Footer
-st.markdown("""
-    <style>
-    .reportview-container .main footer {visibility: hidden;}
-    </style>
-    """, unsafe_allow_html=True)
-
-footer="""
-<footer>
-    <p>Author: Guillaume Pot</p>
-    <p>Email: <a href="mailto:guillaumepot.pro@outlook.com">guillaumepot.pro@outlook.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/062guillaumepot/" target="_blank">Click Here</a></p>
-</footer>
-"""
-st.sidebar.markdown(footer, unsafe_allow_html=True)
 
 
 
@@ -56,3 +39,8 @@ if page == pages[1]:
 # Data visualization
 if page == pages[2]:
     load_data_visualization_page()
+
+
+
+## Sidebar Footer ##
+addSidebarFooter()
