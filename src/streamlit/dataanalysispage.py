@@ -23,7 +23,7 @@ def load_data_visualization_page():
     cleaned_dataset = pd.read_csv(cleaned_dataset_url)
 
     # Add sidebar element
-    page = st.sidebar.selectbox("Choose a category", ["Dataset Information", "Data Visualization"])
+    page = st.sidebar.selectbox("Choose a category", ["Dataset Information", "Data Visualization", "Imgs Visualization"])
     
     # Part 1 - Dataset Information
     if page == "Dataset Information":
@@ -39,3 +39,12 @@ def load_data_visualization_page():
     elif page == "Data Visualization":
         st.subheader("Data Visualization")
         displayCharts(cleaned_dataset, num_unique_values)
+
+
+    
+    # Part 3 - Imgs Visualization
+    elif page == "Imgs Visualization":
+        st.subheader("Images Visualization")
+        if st.button('Show random images from Dataset'):
+            def doNothing():
+                pass

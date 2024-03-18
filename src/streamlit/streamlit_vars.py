@@ -34,7 +34,6 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
 
 
 
-
 """
 Functions
 """
@@ -57,7 +56,7 @@ def addSidebarFooter():
 
 
 
-
+# Display DF
 def displayDataframeInformations(df:pd.DataFrame, display_classification_repartition=False) -> None:
     """
     Display various information about the given DataFrame.
@@ -103,6 +102,7 @@ def displayDataframeInformations(df:pd.DataFrame, display_classification_reparti
 
 
 
+# Display Charts
 def displayCharts(df,num_unique_values:dict) -> None:
     """
     Display charts for analyzing the given DataFrame.
