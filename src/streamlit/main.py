@@ -2,7 +2,7 @@ import streamlit as st
 
 from homepage import load_home_page
 from originaldatasetpage import load_original_dataset_page
-
+from datavisualisationpage import load_data_visualization_page
 
 
 ## Cache ##
@@ -53,7 +53,6 @@ if page == pages[1]:
     load_original_dataset_page()
 
 
-
-
-
-
+# Data visualization
+if page == pages[2]:
+    load_data_visualization_page()
