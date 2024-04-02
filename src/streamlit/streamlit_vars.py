@@ -14,7 +14,7 @@ Common vars
 storage_cleaned_datasets_base_url = os.getenv("CLEANED_DATASETS_BASE_URL", "../../storage/datas/csv/clean")
 storage_raw_datasets_base_url = os.getenv("RAW_DATASETS_BASE_URL", "../../storage/datas/csv/raw")
 
-#img_url = '/home/guillaume/Téléchargements/mushroom-dataset/dataset_images/'
+img_url = os.getenv("IMAGE_URL", "/home/guillaume/Téléchargements/mushroom-dataset/clean_dataset/")
 
 
 # Original Dataset Page
@@ -32,7 +32,7 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
                      'genus': 30,
                      'species': 50}
 
-
+features_dataset_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features.csv")
 
 """
 Functions
@@ -157,4 +157,96 @@ def displayCharts(df,num_unique_values:dict) -> None:
 
     # Display the plots
     plt.tight_layout()
+    st.pyplot(fig)
+
+
+
+# Display random imgs
+def displayRandomImages(df:pd.DataFrame, img_url:str = img_url, n:int=5) -> None:
+    """
+    Display random images from the dataset.
+
+    Parameters:
+    df (pd.DataFrame): The DataFrame containing the image paths.
+    img_url (str): The base URL of the images.
+    n (int): The number of images to display.
+
+    Returns:
+    None
+    """
+    # Get random images
+    random_images = df.sample(n)
+    cols = st.columns(n)
+
+    for i, (index, row) in enumerate(random_images.iterrows()):
+        img = plt.imread(os.path.join(img_url, row['image_lien']))
+        # Display image in the corresponding column
+        cols[i].image(img, caption=row['label'], use_column_width=True)
+
+
+# Display Features charts
+
+
+def displayFeaturesCharts(df:pd.DataFrame) -> None:
+    """
+    Display various charts and histograms for analyzing the features of a given DataFrame.
+
+    Parameters:
+    df (pandas.DataFrame): The DataFrame containing the data to be analyzed.
+
+    Returns:
+    None
+    """
+
+    def plotHist(ax, x, data, color, title):
+        """
+        Plot a histogram on the given axes.
+
+        Parameters:
+        ax (matplotlib.axes.Axes): The axes on which to plot the histogram.
+        x (str): The column name of the data to be plotted on the x-axis.
+        data (pandas.DataFrame): The data to be used for plotting.
+        color (str): The color of the histogram bars.
+        title (str): The title of the histogram.
+
+        Returns:
+        None
+        """
+        ax.hist(x=x, data=data, color=color)
+        ax.set_title(title)
+        ax.set_xlabel(x)
+        ax.set_ylabel('Nb')
+        ax.grid(True, linestyle='--')
+
+
+    # Features Box Plot
+    fig, ax = plt.subplots(figsize=(16,12))
+    sns.catplot(df, kind='boxen')
+    plt.grid(False)
+    plt.title('Features Box plot')
+    plt.xticks(rotation = 90)
+    st.pyplot(fig)
+
+    # Img dimensions comparison
+    df['dimensions'] = df['high'] * df['width']
+    fig, axes = plt.subplots(1,3, figsize=(16, 6))
+
+    attributes = ['width', 'high', 'dimensions']
+    colors = ['yellow', 'green', 'red']
+    titles = ['Width distribution', 'High distribution', 'Dimensions distribution']
+
+    for ax, attr, color, title in zip(axes, attributes, colors, titles):
+        plotHist(ax, attr, df, color, title)
+    st.pyplot(fig)
+
+    # RGB mean comparison
+    fig, axes = plt.subplots(2,2, figsize=(10,8))
+    plt.subplots_adjust(wspace=1, hspace=1)
+
+    attributes = ['red mean', 'green mean', 'blue mean', 'color mean']
+    colors = ['red', 'green', 'blue', 'purple']
+    titles = ['Red mean distribution', 'Green mean distribution', 'Blue mean distribution', 'Color mean distribution']
+
+    for ax, attr, color, title in zip(axes.flatten(), attributes, colors, titles):
+        plotHist(ax, attr, df, color, title)
     st.pyplot(fig)
