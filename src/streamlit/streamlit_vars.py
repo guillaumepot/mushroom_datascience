@@ -34,6 +34,10 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
 
 features_dataset_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features.csv")
 
+
+# Label choice page
+cleaned_dataset_with_features_top_10_species = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_top_10_species.csv")
+
 """
 Functions
 """
@@ -184,9 +188,8 @@ def displayRandomImages(df:pd.DataFrame, img_url:str = img_url, n:int=5) -> None
         cols[i].image(img, caption=row['label'], use_column_width=True)
 
 
+
 # Display Features charts
-
-
 def displayFeaturesCharts(df:pd.DataFrame) -> None:
     """
     Display various charts and histograms for analyzing the features of a given DataFrame.
@@ -220,10 +223,10 @@ def displayFeaturesCharts(df:pd.DataFrame) -> None:
 
 
     # Features Box Plot
-    fig, ax = plt.subplots(figsize=(16,12))
-    sns.catplot(df, kind='boxen')
-    plt.grid(False)
-    plt.title('Features Box plot')
+    fig, ax = plt.subplots(figsize=(14,10))
+    sns.boxenplot(data=df, ax=ax)
+    ax.grid(False)
+    ax.set_title('Features Box plot')
     plt.xticks(rotation = 90)
     st.pyplot(fig)
 
@@ -241,7 +244,7 @@ def displayFeaturesCharts(df:pd.DataFrame) -> None:
 
     # RGB mean comparison
     fig, axes = plt.subplots(2,2, figsize=(10,8))
-    plt.subplots_adjust(wspace=1, hspace=1)
+    plt.subplots_adjust(wspace=0.8, hspace=0.5)
 
     attributes = ['red mean', 'green mean', 'blue mean', 'color mean']
     colors = ['red', 'green', 'blue', 'purple']

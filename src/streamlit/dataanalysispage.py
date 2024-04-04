@@ -48,4 +48,5 @@ def load_data_visualization_page():
         if st.button('Show random images from Dataset'):
             displayRandomImages(features_dataset, n=n)
 
+        st.subheader("Image features charts")
         displayFeaturesCharts(features_dataset)

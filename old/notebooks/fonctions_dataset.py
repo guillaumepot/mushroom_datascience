@@ -1,11 +1,3 @@
-# Version 1.5 finale
-
-import tensorflow as tf
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-
-
-
 def load_image(filepath, resize, augment, normalize):
 
     im = tf.io.read_file(filepath)
@@ -29,15 +21,10 @@ def load_image(filepath, resize, augment, normalize):
     return im
 
 
+
+
+
 def gen_dataset(set, training_data, img_dim, augment, normalize, batch_size):
-    '''
-    Génère le dataset tensorflow à partir des données incrites
-        - set : 'train', 'validation' ou 'test'
-        - training_data : DataFrame contenant une colonne label et une colonne image_url (url des images)
-        - img_dim : Correspond aux dimensions voulues des images
-        - augment : Booléen, si True: Il y aura de l'image augmentation
-        - normalize : Booélen, si True: Normalize les pixels des images
-    '''
     
     # Encodage de la variable 'label'
     s = LabelEncoder()

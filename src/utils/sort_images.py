@@ -17,7 +17,7 @@ destination_folder=input("Enter the path to the folder where you want to move th
 csv_url="../../storage/datas/csv/clean/cleaned_dataset.csv"
 
 # Set logging file
-logging.basicConfig(filename='sort_imgs.log', level=logging.INFO)
+logging.basicConfig(filename='../logs/sort_imgs.log', level=logging.INFO)
 
 
 # load DF
