@@ -80,6 +80,7 @@ def img_preprocessing(img_url:str = None, dimensions:tuple = (224,224), resize:b
     img = load_img(img_url)
     img = tf.clip_by_value(img, 0, 255)
 
+
     if resize:
         img = resize_img(img, dimensions)
 
@@ -88,7 +89,8 @@ def img_preprocessing(img_url:str = None, dimensions:tuple = (224,224), resize:b
 
     if normalize:
         img = normalize_img(img)
-    
+
+
     return img
 
 
@@ -135,6 +137,10 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
         label_encoder = LabelEncoder()
         encoded_label_set = label_encoder.fit_transform(target_to_encode)
         print(f"Encoded target: {encoded_label_set}")
+
+        label_mapping = dict(zip(label_encoder.classes_, range(len(label_encoder.classes_))))
+        print(f"Label mapping: {label_mapping}")
+
         return encoded_label_set
 
 
@@ -155,7 +161,7 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
             # Generate Train Dataset
             train_dataset = tf.data.Dataset.from_tensor_slices((X_train, y_train))
                 # Apply image preprocessing function
-            train_dataset = train_dataset.map(lambda x,y: [img_preprocessing(image_url = x,
+            train_dataset = train_dataset.map(lambda x,y: [img_preprocessing(img_url = x,
                                                                             dimensions = img_dimensions,
                                                                             resize = resize,
                                                                             augment = augment,
@@ -180,7 +186,7 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
         if set == 'validation':
             val_dataset = tf.data.Dataset.from_tensor_slices((X_val, y_val))
                 # Apply image preprocessing function
-            val_dataset = val_dataset.map(lambda x,y: [img_preprocessing(image_url = x,
+            val_dataset = val_dataset.map(lambda x,y: [img_preprocessing(img_url = x,
                                                                             dimensions = img_dimensions,
                                                                             resize = resize,
                                                                             augment = False,
@@ -203,7 +209,7 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
             # Generate Test Dataset
             test_dataset = tf.data.Dataset.from_tensor_slices((X_test, y_test))
                 # Apply image preprocessing function
-            test_dataset = test_dataset.map(lambda x,y: [img_preprocessing(image_url = x,
+            test_dataset = test_dataset.map(lambda x,y: [img_preprocessing(img_url = x,
                                                                             dimensions = img_dimensions,
                                                                             resize = resize,
                                                                             augment = False,

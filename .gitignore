@@ -6,3 +6,12 @@
 
 # Ignore __pycache__ directory
 __pycache__/
+
+# Ignore .pytest_cache directory
+.pytest_cache/
+
+# Ignore .vscode directory
+.vscode/
+
+# Ignore tf_datasets directory
+./storage/datas/tf_datasets/
