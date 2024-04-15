@@ -1,9 +1,18 @@
+"""
+This file contains functions for image preprocessing and dataset generation
+Available functions:
+- get_features_target
+- img_preprocessing
+- generate_dataset
+"""
+
+# LIB
 import pandas as pd
 import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
-
+# FUNCTIONS
 def get_features_target(df: pd.DataFrame, target_column_name: str):
     """
     Extracts the features and target from a pandas DataFrame.

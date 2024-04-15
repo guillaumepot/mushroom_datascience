@@ -1,7 +1,16 @@
+"""
+This file contains somes functions used to import a DataFrame from a CSV file.
+Available functions :
+- import_df: Import a DataFrame from a CSV file.
+"""
+
+
+
+# LIB
 import pandas as pd
 
 
-
+# FUNCTIONS
 def import_df(csv_url:str,
               sample:bool = False,
               sample_size:float = 0.1,
