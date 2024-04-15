@@ -6,20 +6,27 @@ import os
 import pandas as pd
 import logging
 
-# Get URL
-
-# "/home/guillaume/Téléchargements/mushroom-dataset/clean_dataset/"
-
-path = input("Enter the path to the folder containing the files to list:")
-csv_url = "../../storage/datas/csv/clean/images_found.csv"
-
-
-# Set logging file
-logging.basicConfig(filename='../logs/file_list.log', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M:%S')
 
 
 # List all files
-def main():
+def main(file_name="file_list"):
+    """
+    Main function to list files in a folder and save the file list to a CSV.
+
+    Args:
+        file_name (str): The name of the CSV file to be saved. Default is "file_list".
+
+    Returns:
+        None
+    """
+
+    path = input("Enter the path to the folder containing the files to list:")
+    file_name = file_name + ".csv"
+    csv_url = f"../../storage/datas/csv/clean/{file_name}.csv"
+
+    # Set logging file
+    logging.basicConfig(filename='../logs/file_list.log', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M:%S')
+
     files = os.listdir(path)
 
     logging.info("Starting to list files...")

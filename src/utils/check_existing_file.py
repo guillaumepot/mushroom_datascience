@@ -3,7 +3,15 @@ import pandas as pd
 
 def check_file(img_directory:str, df:pd.DataFrame) -> None:
     """
-    
+    Check if the files specified in the DataFrame exist in the given image directory.
+
+    Args:
+        img_directory (str): The directory where the image files are located.
+        df (pd.DataFrame): The DataFrame containing the image file information.
+
+    Returns:
+        None
+
     """
     missing_files = []
 
