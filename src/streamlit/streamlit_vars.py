@@ -17,12 +17,17 @@ storage_raw_datasets_base_url = os.getenv("RAW_DATASETS_BASE_URL", "../../storag
 img_url = os.getenv("IMAGE_URL", "/home/guillaume/Téléchargements/mushroom-dataset/clean_dataset/")
 
 
-# Original Dataset Page
+# Dataset CSV Page
 original_dataset_url = os.path.join(storage_raw_datasets_base_url, "observations_mushroom.csv")
+cleaned_dataset = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset.csv")
+cleaned_dataset_with_features_dimensions_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_and_dimensions.csv")
+
+
+
 
 
 # Data analysis page
-cleaned_dataset_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset.csv")
+#cleaned_dataset_with_features_dimensions_url
 
 
 num_unique_values = {'phylum': None,       # Num unique values to display on each graph (sorted by descending order)
@@ -32,11 +37,35 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
                      'genus': 30,
                      'species': 50}
 
-features_dataset_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features.csv")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Label choice page
 cleaned_dataset_with_features_top_10_species = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_top_10_species.csv")
+
+
+
+
+
+
+
+
 
 """
 Functions
@@ -60,6 +89,9 @@ def addSidebarFooter():
 
 
 
+
+
+
 # Display DF
 def displayDataframeInformations(df:pd.DataFrame, display_classification_repartition=False) -> None:
     """
@@ -73,7 +105,7 @@ def displayDataframeInformations(df:pd.DataFrame, display_classification_reparti
     """
 
     # Display Dataset
-    st.subheader("Cleaned Dataset (5 first lines)")
+    st.subheader("Dataset (5 first lines)")
     st.dataframe(df.head(5))
 
     # Dataset Information
@@ -106,8 +138,63 @@ def displayDataframeInformations(df:pd.DataFrame, display_classification_reparti
 
 
 
+# Display DF Comparison
+def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame = None) -> None:
+    """
+    Display a comparison table of information about the input dataframes.
+
+    Parameters:
+    - df1 (pd.DataFrame): The first dataframe to compare.
+    - df2 (pd.DataFrame): The second dataframe to compare.
+    - df3 (pd.DataFrame, optional): An optional third dataframe to compare. Default is None.
+
+    Returns:
+    None
+    """
+
+    def getDfInfo(df: pd.DataFrame) -> pd.Series:
+        """
+        Get information about the input dataframe.
+
+        Parameters:
+        - df (pd.DataFrame): The dataframe to get information from.
+
+        Returns:
+        pd.Series: A series containing information about the dataframe.
+        """
+        info = {
+            'shape (rows)': df.shape[0],
+            'shape (cols)': df.shape[1],
+            'duplicated': df.duplicated(subset = 'image_lien').sum(),
+            'NAN': df.isna().sum().sum(),
+            'phylum': df['phylum'].nunique() if 'phylum' in df.columns else df['gbif_info/phylum'].nunique(),
+            'class': df['class'].nunique() if 'class' in df.columns else df['gbif_info/class'].nunique(),
+            'order': df['order'].nunique() if 'order' in df.columns else df['gbif_info/order'].nunique(),
+            'family': df['family'].nunique() if 'family' in df.columns else df['gbif_info/family'].nunique(),
+            'genus': df['genus'].nunique() if 'genus' in df.columns else df['gbif_info/genus'].nunique(),
+            'species': df['species'].nunique() if 'species' in df.columns else df['gbif_info/species'].nunique()
+        }
+
+        return pd.Series(info)
+
+    df1_info = getDfInfo(df1)
+    df2_info = getDfInfo(df2)
+    df3_info = getDfInfo(df3) if df3 is not None else None
+
+    comparison = pd.DataFrame({'Original': df1_info, 'Cleaned (with files missing)': df2_info})
+    if df3 is not None:
+        df3_info = getDfInfo(df3)
+        comparison['Cleaned ; Features ; Dimensions'] = df3_info
+        st.table(comparison)
+
+
+
+
+
+
+
 # Display Charts
-def displayCharts(df,num_unique_values:dict) -> None:
+def displayCharts(df : pd.DataFrame , num_unique_values:dict) -> None:
     """
     Display charts for analyzing the given DataFrame.
 

@@ -98,17 +98,21 @@ def move_files_to_folder(csv_url:str):
     # Create folders if they don't exist
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
-    if not os.path.exists("sort_imgs.log"):
-        with open("sort_imgs.log", 'w') as f:
+    if not os.path.exists("move_files_to_folder.log"):
+        with open("../logs/move_files_to_folder.log", 'w') as f:
             pass
 
 
     # Sort files
     files_not_found = []
-    for file in df['image_lien'].values:
+    count=0
+    for file in df['image_lien']:
         if os.path.isfile(img_url + "/" + file):
+            # Move existing files
             shutil.move(img_url + "/" + file, destination_folder + "/" + file)
+            count+=1
         else:
+            # Log files not found
             logging.info(f"File not found: {file}")
             files_not_found.append(file)
 
@@ -120,7 +124,8 @@ def move_files_to_folder(csv_url:str):
     new_df_shape = df.shape[0]
     logging.info(f"\n\n Number of files not found: {len(files_not_found)} \n"\
                 f"Old dataframe shape: {old_df_shape} \n"\
-                    f"New dataframe shape: {new_df_shape}")
+                    f"New dataframe shape: {new_df_shape} \n"\
+                        f"Files moved: {count}")
     df.to_csv(csv_url, index=False)
 
 

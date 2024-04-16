@@ -1,7 +1,7 @@
 import streamlit as st
 
 from homepage import load_home_page
-from originaldatasetpage import load_original_dataset_page
+from datasetcsvpage import load_dataset_csv_page
 from dataanalysispage import load_data_visualization_page
 from classificationchoicepage import load_classification_choice
 
@@ -19,7 +19,7 @@ def generate_cache():
 st.sidebar.title("Mushroom Observations and Classification project")
 
 # Pages
-pages=["Home","Original Dataset","Data Analysis","Classification choice","Modelization","Evaluation"]
+pages=["Home","Dataset csv file","Data Analysis","Classification choice","Modelization","Evaluation"]
 page=st.sidebar.radio("", pages)
 
 
@@ -33,7 +33,7 @@ if page == pages[0]:
 
 # Original dataset
 if page == pages[1]: 
-    load_original_dataset_page()
+    load_dataset_csv_page()
 
 
 # Data visualization

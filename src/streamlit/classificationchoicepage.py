@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Variables
-from streamlit_vars import cleaned_dataset_with_features_top_10_species, features_dataset_url
+from streamlit_vars import cleaned_dataset_with_features_top_10_species, cleaned_dataset_with_features_dimensions_url
 # Functions
 from streamlit_vars import displayDataframeInformations, displayRandomImages
 
@@ -16,7 +16,7 @@ def load_classification_choice():
     st.markdown("*Check the sidebar to choose a category.*")
 
     # Load Datasets
-    df_cleaned_dataset_with_features = pd.read_csv(features_dataset_url)
+    df_cleaned_dataset_with_features = pd.read_csv(cleaned_dataset_with_features_dimensions_url)
     df_cleaned_dataset_with_features_top_10_species = pd.read_csv(cleaned_dataset_with_features_top_10_species)
 
     # Comparison table
