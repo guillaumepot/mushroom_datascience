@@ -14,4 +14,4 @@ __pycache__/
 .vscode/
 
 # Ignore tf_datasets directory
-./storage/datas/tf_datasets/
+storage/datas/tf_datasets/*
