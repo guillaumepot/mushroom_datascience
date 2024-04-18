@@ -14,20 +14,21 @@ Common vars
 storage_cleaned_datasets_base_url = os.getenv("CLEANED_DATASETS_BASE_URL", "../../storage/datas/csv/clean")
 storage_raw_datasets_base_url = os.getenv("RAW_DATASETS_BASE_URL", "../../storage/datas/csv/raw")
 
-img_url = os.getenv("IMAGE_URL", "/home/guillaume/Téléchargements/mushroom-dataset/clean_dataset/")
+top10_species_img_url = os.getenv("TOP10_SPECIES_IMAGE_URL", "/home/guillaume/Téléchargements/mushroom_images_dataset/cleaned_dataset/")
+bad_img_url = os.getenv("BAD_IMAGE_URL", "../../storage/datas/imgs/bad_images/")
 
-
-# Dataset CSV Page
+# CSV url
 original_dataset_url = os.path.join(storage_raw_datasets_base_url, "observations_mushroom.csv")
 cleaned_dataset = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset.csv")
 cleaned_dataset_with_features_dimensions_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_and_dimensions.csv")
 cleaned_dataset_top10_species_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_and_dimensions_top_10_species.csv")
+bad_images_df = os.path.join(storage_cleaned_datasets_base_url, "bad_images_moved.csv")
+
+# Dataset CSV Page
+##
 
 
 # Data analysis page
-#cleaned_dataset_top10_species_url
-
-
 num_unique_values = {'phylum': None,       # Num unique values to display on each graph (sorted by descending order)
                      'class': None,
                      'order': 15,
@@ -155,13 +156,13 @@ def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.Dat
     comparison = pd.DataFrame({'Original': df1_info, 'Cleaned (with files missing)': df2_info})
     if df3 is not None:
         df3_info = getDfInfo(df3)
-        comparison['Cleaned ; Features ; Dimensions'] = df3_info
-        st.table(comparison)
+        comparison['Cleaned (without missing files)'] = df3_info
 
     if df4 is not None:
         df4_info = getDfInfo(df4)
-        comparison['Top 10 species ; with manual imgs sort'] = df4_info
-        st.table(comparison)
+        comparison["Top 10 species + 1 'other' class ; with manual imgs sort"] = df4_info
+    
+    st.table(comparison)
 
 
 
@@ -211,7 +212,7 @@ def displayCharts(df : pd.DataFrame , num_unique_values:dict) -> None:
 
     # Define the number of unique values to consider for each column
     columns = num_unique_values.keys()
-    fig, axs = plt.subplots(len(columns), 1, figsize=(10, 6*len(columns)))
+    fig, axs = plt.subplots(len(columns), 1, figsize=(18, 10*len(columns)))
 
     # Create a subplot for each value to visualize
     for ax, column in zip(axs, columns):
@@ -219,13 +220,13 @@ def displayCharts(df : pd.DataFrame , num_unique_values:dict) -> None:
 
 
     # Display the plots
+    plt.close()
     plt.tight_layout()
     st.pyplot(fig)
 
 
-
 # Display random imgs
-def displayRandomImages(df:pd.DataFrame, img_url:str = img_url, n:int=5) -> None:
+def displayRandomImages(df:pd.DataFrame, n:int=5, bad_images = False) -> None:
     """
     Display random images from the dataset.
 
@@ -241,10 +242,16 @@ def displayRandomImages(df:pd.DataFrame, img_url:str = img_url, n:int=5) -> None
     random_images = df.sample(n)
     cols = st.columns(n)
 
-    for i, (index, row) in enumerate(random_images.iterrows()):
-        img = plt.imread(os.path.join(img_url, row['image_lien']))
-        # Display image in the corresponding column
-        cols[i].image(img, caption=row['label'], use_column_width=True)
+    if bad_images == True:
+        for i, (index,row) in enumerate(random_images.iterrows()):
+            img = plt.imread(row['image_path'])
+            cols[i].image(img, caption="", use_column_width=True)
+
+    else:
+        for i, (index, row) in enumerate(random_images.iterrows()):
+            img = plt.imread(row['image_path'])
+            # Display image in the corresponding column
+            cols[i].image(img, caption=row['label'], use_column_width=True)
 
 
 

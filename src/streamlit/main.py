@@ -3,7 +3,7 @@ import streamlit as st
 from homepage import load_home_page
 from datasetcsvpage import load_dataset_csv_page
 from dataanalysispage import load_data_visualization_page
-from classificationchoicepage import load_classification_choice
+from imagevizpage import load_image_viz_page
 
 from streamlit_vars import addSidebarFooter
 
@@ -19,7 +19,7 @@ def generate_cache():
 st.sidebar.title("Mushroom Observations and Classification project")
 
 # Pages
-pages=["Home","Dataset csv file","Data Analysis","Classification choice","Modelization","Evaluation"]
+pages=["Home","Dataset csv file","Data Analysis","Image Visualization","Modelization","Evaluation"]
 page=st.sidebar.radio("", pages)
 
 
@@ -41,9 +41,9 @@ if page == pages[2]:
     load_data_visualization_page()
 
 
-# Data preprocessing
+# Image visualization
 if page == pages[3]:
-    load_classification_choice()
+    load_image_viz_page()
 
 
 

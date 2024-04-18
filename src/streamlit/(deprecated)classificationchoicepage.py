@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Variables
-from streamlit_vars import cleaned_dataset_with_features_top_10_species, cleaned_dataset_with_features_dimensions_url
+from streamlit_vars import cleaned_dataset_top10_species_url, cleaned_dataset_with_features_dimensions_url
 # Functions
 from streamlit_vars import displayDataframeInformations, displayRandomImages
 
@@ -17,7 +17,7 @@ def load_classification_choice():
 
     # Load Datasets
     df_cleaned_dataset_with_features = pd.read_csv(cleaned_dataset_with_features_dimensions_url)
-    df_cleaned_dataset_with_features_top_10_species = pd.read_csv(cleaned_dataset_with_features_top_10_species)
+    df_cleaned_dataset_with_features_top_10_species = pd.read_csv(cleaned_dataset_top10_species_url)
 
     # Comparison table
     st.header("Comparison table")

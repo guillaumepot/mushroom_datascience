@@ -20,7 +20,5 @@ Execute script start_streamlit.sh
 
 
 ### Todo
-- 4-file_sort à finir
-- Ajouter la visualisation des mauvaises images sur Streamlit
-- Ajouter la nouvelle shape avec le df filtré sur les bonnes images uniquement
 - Régénérer les datasets tf en utilisant le notebook
+- Ajouter les TF datasets en image visualization
