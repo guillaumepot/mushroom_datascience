@@ -109,7 +109,21 @@ def check_if_file_exists(img_directory: str, csv_url: str, column: str, auto_cle
 
 def copy_files_to_folder(csv_url:str, column:str, source:str = None, destination:str = None, auto_clean_csv = False) -> None:
     """
-    
+    Copy files from a source folder to a destination folder based on a CSV file.
+
+    Args:
+        csv_url (str): The URL or file path of the CSV file containing the list of files to be copied.
+        column (str): The name of the column in the CSV file that contains the file names.
+        source (str, optional): The path to the folder containing the source files. If not provided, the user will be prompted to enter it.
+        destination (str, optional): The path to the folder where the files will be copied. If not provided, the user will be prompted to enter it.
+        auto_clean_csv (bool, optional): Whether to automatically clean the CSV file by removing entries for files that were not found in the source folder. Default is False.
+
+    Returns:
+        None
+
+    Raises:
+        None
+
     """
     # Get URL
     if source is None or destination is None:
@@ -183,7 +197,7 @@ def make_file_list_as_csv(file_name="file_list"):
     """
     path = input("Enter the path to the folder containing the files to list:")
     file_name = file_name + ".csv"
-    csv_url = f"../../storage/datas/csv/clean/{file_name}.csv"
+    csv_url = f"../../storage/datas/csv/clean/{file_name}"
 
     # Set logging file
     logging.basicConfig(filename='../logs/file_list.log', level=logging.INFO, format='%(asctime)s - %(message)s', datefmt='%H:%M:%S')
@@ -217,11 +231,6 @@ def make_file_list_as_csv(file_name="file_list"):
     logging.info(f"Saving CSV to: {csv_url}")
     df.to_csv(csv_url, index=False)
     logging.info("CSV saved successfully")
-
-
-
-
-
 
 
 
