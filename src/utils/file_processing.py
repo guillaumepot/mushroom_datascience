@@ -235,8 +235,6 @@ def make_file_list_as_csv(file_name="file_list"):
 
 
 
-
-
 if __name__ == "__main__":
     print("Available functions: \n - unzip_files \n - make_file_list_as_csv \n - move_files_to_folder \n - check_if_file_exists")
     function_to_run = input("Enter the function to run: ")

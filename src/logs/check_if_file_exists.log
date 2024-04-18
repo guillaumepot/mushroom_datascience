@@ -1,13 +1,25 @@
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/394853.jpg
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/411114.jpg
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/573708.jpg
-INFO:root:
- 3 files not found
-INFO:root:Execution time: 0.20489079554875692 minutes
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/394853.jpg
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/411114.jpg
-INFO:root:File not found: /home/guillaume/Téléchargements/mushroom_images_dataset/images/573708.jpg
-INFO:root:
- 3 files not found
-INFO:root:Execution time: 0.18637436628341675 minutes
-INFO:root:CSV cleaned successfully
+INFO:root:All files found!
+INFO:root:Execution time: 0.006645099322001139 minutes
+WARNING:tensorflow:From /tmp/ipykernel_66657/265289912.py:1: is_gpu_available (from tensorflow.python.framework.test_util) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.config.list_physical_devices('GPU')` instead.
+INFO:root:All files found!
+INFO:root:Execution time: 0.006805344422658285 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).

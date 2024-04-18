@@ -8,7 +8,7 @@ use requirements.txt
 
 
 # Start Streamlit
-Execute script start_streamlit.sh
+Execute script start_streamlit.sh (ajouter le dezip de datas csv source vers datas csv raw)
 
 
 # Execute notebook :
@@ -22,3 +22,5 @@ Execute script start_streamlit.sh
 ### Todo
 - Régénérer les datasets tf en utilisant le notebook
 - Ajouter les TF datasets en image visualization
+- Améliorer le scirpt streamlit.sh
+- Refaire requirements.txt
