@@ -21,13 +21,11 @@ img_url = os.getenv("IMAGE_URL", "/home/guillaume/Téléchargements/mushroom-dat
 original_dataset_url = os.path.join(storage_raw_datasets_base_url, "observations_mushroom.csv")
 cleaned_dataset = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset.csv")
 cleaned_dataset_with_features_dimensions_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_and_dimensions.csv")
-
-
-
+cleaned_dataset_top10_species_url = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_and_dimensions_top_10_species.csv")
 
 
 # Data analysis page
-#cleaned_dataset_with_features_dimensions_url
+#cleaned_dataset_top10_species_url
 
 
 num_unique_values = {'phylum': None,       # Num unique values to display on each graph (sorted by descending order)
@@ -36,32 +34,6 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
                      'family': 30,
                      'genus': 30,
                      'species': 50}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Label choice page
-cleaned_dataset_with_features_top_10_species = os.path.join(storage_cleaned_datasets_base_url, "cleaned_dataset_with_features_top_10_species.csv")
-
-
-
-
 
 
 
@@ -86,9 +58,6 @@ def addSidebarFooter():
     </footer>
     """
     st.sidebar.markdown(footer, unsafe_allow_html=True)
-
-
-
 
 
 
@@ -139,7 +108,7 @@ def displayDataframeInformations(df:pd.DataFrame, display_classification_reparti
 
 
 # Display DF Comparison
-def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame = None) -> None:
+def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.DataFrame = None, df4: pd.DataFrame = None) -> None:
     """
     Display a comparison table of information about the input dataframes.
 
@@ -147,6 +116,7 @@ def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.Dat
     - df1 (pd.DataFrame): The first dataframe to compare.
     - df2 (pd.DataFrame): The second dataframe to compare.
     - df3 (pd.DataFrame, optional): An optional third dataframe to compare. Default is None.
+    - df4 (pd.DataFrame, optional): An optional fourth dataframe to compare. Default is None.
 
     Returns:
     None
@@ -180,6 +150,7 @@ def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.Dat
     df1_info = getDfInfo(df1)
     df2_info = getDfInfo(df2)
     df3_info = getDfInfo(df3) if df3 is not None else None
+    df4_info = getDfInfo(df4) if df4 is not None else None
 
     comparison = pd.DataFrame({'Original': df1_info, 'Cleaned (with files missing)': df2_info})
     if df3 is not None:
@@ -187,9 +158,10 @@ def displayDataframeComparison(df1: pd.DataFrame, df2: pd.DataFrame, df3: pd.Dat
         comparison['Cleaned ; Features ; Dimensions'] = df3_info
         st.table(comparison)
 
-
-
-
+    if df4 is not None:
+        df4_info = getDfInfo(df4)
+        comparison['Top 10 species ; with manual imgs sort'] = df4_info
+        st.table(comparison)
 
 
 

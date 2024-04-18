@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-from streamlit_vars import original_dataset_url, cleaned_dataset, cleaned_dataset_with_features_dimensions_url
+from streamlit_vars import original_dataset_url, cleaned_dataset, cleaned_dataset_with_features_dimensions_url, cleaned_dataset_top10_species_url
 from streamlit_vars import displayDataframeInformations, displayDataframeComparison
 
 
@@ -39,4 +39,5 @@ def load_dataset_csv_page():
         # Display comparison board
         displayDataframeComparison(df1 = original_dataset,
                                    df2 = cleaned_dataset,
-                                   df3 = cleaned_dataset_with_features_dimensions_url)
+                                   df3 = cleaned_dataset_with_features_dimensions_url,
+                                   df4 = cleaned_dataset_top10_species_url)
