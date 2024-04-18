@@ -8,7 +8,10 @@ Available functions:
 
 # LIB
 import pandas as pd
+import json
+import os
 import tensorflow as tf
+from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
@@ -146,11 +149,28 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
         label_encoder = LabelEncoder()
         encoded_label_set = label_encoder.fit_transform(target_to_encode)
         print(f"Encoded target: {encoded_label_set}")
-
+        encoded_label_set = to_categorical(encoded_label_set)
+        
         label_mapping = dict(zip(label_encoder.classes_, range(len(label_encoder.classes_))))
         print(f"Label mapping: {label_mapping}")
 
+
+        # Save label_mapping
+        json_path = '../../storage/datas/json/encoded_labels.json'
+        if os.path.exists(json_path) and os.path.getsize(json_path) > 0:
+            with open(json_path, 'r') as f:
+                existing_data = json.load(f)
+        else:
+            existing_data = {}
+
+        existing_data.update(label_mapping)
+
+        with open(json_path, 'w') as f:
+            json.dump(existing_data, f)
+
         return encoded_label_set
+
+
 
 
     def split_features_target(features_to_split: pd.DataFrame, encoded_label_set: pd.Series):
