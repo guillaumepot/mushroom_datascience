@@ -231,6 +231,8 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
                                                                             num_parallel_calls=-1)
             
             val_dataset = val_dataset.batch(batch_size)
+            train_dataset = train_dataset.shuffle(buffer_size = train_dataset.cardinality())   
+            train_dataset = train_dataset.repeat(count=5)                
 
             print(f"Validation dataset generated successfully. Number of batches: {val_dataset.cardinality()}")
 
