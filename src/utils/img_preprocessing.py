@@ -203,7 +203,8 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
                                                                             num_parallel_calls=-1)
 
             train_dataset = train_dataset.cache()
-            train_dataset = train_dataset.shuffle(buffer_size = train_dataset.cardinality())        
+            train_dataset = train_dataset.shuffle(buffer_size = train_dataset.cardinality())   
+            train_dataset = train_dataset.repeat(count=5)     
             train_dataset = train_dataset.batch(batch_size)
             train_dataset = train_dataset.prefetch(buffer_size=tf.data.AUTOTUNE)
 
