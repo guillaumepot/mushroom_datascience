@@ -1,5 +1,8 @@
 #!/bin/bash
 
+
+### Launch Streamlit App ###
+
 # Move to streamlit app directory
 cd ./src/steamlit
 

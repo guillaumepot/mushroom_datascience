@@ -4,7 +4,7 @@ import pandas as pd
 # Variables
 from streamlit_vars import cleaned_dataset_top10_species_url, top10_species_img_url, bad_images_df
 # Functions
-from streamlit_vars import displayRandomImages
+from streamlit_vars import displayRandomImages, displayRandomImagesFromDatasetTF
 
 
 pd.set_option('display.max_columns', None)
@@ -21,7 +21,7 @@ def load_image_viz_page():
     st.write("This page show some images depending the set you choose.")
     
 
-    choice =  st.radio('Select Dataset', ['Top 10 species', 'Bad images removed from dataset'])
+    choice =  st.radio('Select Dataset', ['Top 10 species', 'Bad images removed from dataset', 'tf_datasets'])
     n = st.selectbox('Number of images to display', list(range(1, 4)))
 
     # Display random images from df
@@ -33,7 +33,8 @@ def load_image_viz_page():
         if st.button('Show random images from Dataset'):
              displayRandomImages(df_img_to_show, n=n)
 
-    else:
+    # Display random images from sorted bad images
+    elif choice == 'Bad images removed from dataset':
         st.markdown("Displayed images have been sorted manually and are considered as bad images.")
         st.markdown("A image is considered as bad following these criterias:")
         st.markdown("1. The image is not a mushroom.")
@@ -43,3 +44,10 @@ def load_image_viz_page():
         st.markdown("5. The image is a microscopic analysis of celluls.")
         if st.button('Show random bad images'):
             displayRandomImages(bad_imgs, n=n, bad_images = True)
+
+
+    # Display random images from tf_datasets
+    else:
+        st.markdown("This dataset is composed of 10 (+1) classes of mushrooms.")
+        if st.button('Show random images from train tf_dataset'):
+            displayRandomImagesFromDatasetTF(n=n)

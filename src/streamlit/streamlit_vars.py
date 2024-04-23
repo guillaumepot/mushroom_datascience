@@ -4,9 +4,10 @@ Libs
 import os
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import tensorflow as tf
 
 """
 Common vars
@@ -16,6 +17,10 @@ storage_raw_datasets_base_url = os.getenv("RAW_DATASETS_BASE_URL", "../../storag
 
 top10_species_img_url = os.getenv("TOP10_SPECIES_IMAGE_URL", "/home/guillaume/Téléchargements/mushroom_images_dataset/cleaned_dataset/")
 bad_img_url = os.getenv("BAD_IMAGE_URL", "../../storage/datas/imgs/bad_images/")
+
+train_dataset_path = "../../storage/datas/tf_datasets/train_dataset"
+
+
 
 # CSV url
 original_dataset_url = os.path.join(storage_raw_datasets_base_url, "observations_mushroom.csv")
@@ -225,8 +230,9 @@ def displayCharts(df : pd.DataFrame , num_unique_values:dict) -> None:
     st.pyplot(fig)
 
 
+
 # Display random imgs
-def displayRandomImages(df:pd.DataFrame, n:int=5, bad_images = False) -> None:
+def displayRandomImages(df:pd.DataFrame, n:int=3, bad_images = False) -> None:
     """
     Display random images from the dataset.
 
@@ -252,6 +258,27 @@ def displayRandomImages(df:pd.DataFrame, n:int=5, bad_images = False) -> None:
             img = plt.imread(row['image_path'])
             # Display image in the corresponding column
             cols[i].image(img, caption=row['label'], use_column_width=True)
+
+
+
+def displayRandomImagesFromDatasetTF(n: int = 3) -> None:
+    """
+    Display random images from a TensorFlow dataset.
+
+    Parameters:
+        n (int): The number of random images to display. Default is 3.
+
+    Returns:
+        None
+    """
+    train_dataset = tf.data.experimental.load(train_dataset_path)
+    train_dataset = train_dataset.shuffle(buffer_size=1000)
+    datasets_elements = train_dataset.take(n)
+    for images, labels in datasets_elements:
+        for i in range(n):
+            image = images[i].numpy()
+            image = np.clip(image, 0.0, 1.0)  # Clip values to the range [0.0, 1.0]
+            st.image(image, caption=f"Label: {labels[i].numpy()}", use_column_width=True)
 
 
 

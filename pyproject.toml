@@ -16,6 +16,9 @@ streamlit = "^1.32.2"
 bokeh = "^3.4.0"
 scikit-learn = "^1.4.1.post1"
 tensorflow = "^2.16.1"
+tensorflow-hub = "^0.16.1"
+tf-keras = "^2.16.0"
+mlflow = "^2.12.1"
 
 
 [build-system]

@@ -15,3 +15,6 @@ __pycache__/
 
 # Ignore tf_datasets directory
 storage/datas/tf_datasets/*
+
+# Ignore models
+storage/models/*
