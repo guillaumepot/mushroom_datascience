@@ -24,5 +24,6 @@ Execute script start_streamlit.sh (ajouter le dezip de datas csv source vers dat
 
 
 ### Todo
+- RFinir notebook 8 (déplacer fit dans utils)
 - Refaire requirements.txt
 - Complete Readme

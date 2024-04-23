@@ -1,19 +1,12 @@
 """
-...
+This module contains functions to generate models for image classification using transfer learning.
 """
 
 
 # LIB
 import tensorflow as tf
-import tensorflow_hub as hub
 
 
-# Solve Keras conflict version
-version_fn = getattr(tf.keras, "version", None)
-if version_fn and version_fn().startswith("3."):
-  import tf_keras as keras
-else:
-  keras = tf.keras
 
 # VARS
 
@@ -34,20 +27,28 @@ def generate_model(pre_trained_model_url:str, num_classes:int, input_shape:tuple
 
     """
     # Load base model
-    base_model = hub.KerasLayer(pre_trained_model_url,
-                                trainable=False,
-                                name="base_model_efficientnet",
-                                input_shape=input_shape)
+    base_model = tf.keras.applications.EfficientNetV2B0(
+        include_top=False,
+        weights='imagenet',
+        input_shape=(224,224,3),
+        include_preprocessing=False)
+
+    base_model.trainable = False
 
 
     # Define model
-    model = keras.Sequential([
-        base_model,
-        keras.layers.Flatten(),
-        keras.layers.Dropout(0.5),
-        keras.layers.Dense(num_classes, activation='softmax')
-    ])
+    inputs = tf.keras.Input(shape=(224, 224, 3))
+    x = base_model(inputs, training=False)
+    x = tf.keras.layers.GlobalAveragePooling2D()(x)
+    x = tf.keras.layers.Dropout(0.2)(x)
+    x = tf.keras.layers.Dense(512)(x)
+    x = tf.keras.layers.Dropout(0.5)(x)
+    x = tf.keras.layers.Dense(256)(x)
+    outputs = tf.keras.layers.Dense(11, activation='softmax')(x)
 
+    model = tf.keras.Model(inputs, outputs)
+
+    
     print("model summary: \n", model.summary())
 
     return model
