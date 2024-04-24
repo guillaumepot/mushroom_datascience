@@ -107,7 +107,6 @@ def img_preprocessing(img_url:str = None, dimensions:tuple = (224,224), resize:b
 
 
 
-
 def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFrame,
                      train_size: float = 0.8, test_size = 0.5, random_state: int = 10,
                      img_dimensions:tuple = (224,224), resize = False,
@@ -231,8 +230,8 @@ def generate_dataset(target_to_encode: pd.Series, features_to_split: pd.DataFram
                                                                             num_parallel_calls=-1)
             
             val_dataset = val_dataset.batch(batch_size)
-            train_dataset = train_dataset.shuffle(buffer_size = train_dataset.cardinality())   
-            train_dataset = train_dataset.repeat(count=5)                
+            val_dataset = val_dataset.shuffle(buffer_size = val_dataset.cardinality())   
+            val_dataset = val_dataset.repeat(count=5)                
 
             print(f"Validation dataset generated successfully. Number of batches: {val_dataset.cardinality()}")
 
