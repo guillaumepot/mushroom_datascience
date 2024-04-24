@@ -13,7 +13,7 @@ import tensorflow as tf
 
 
 # FUNCTIONS
-def generate_model(pre_trained_model_url:str, num_classes:int, input_shape:tuple=(224, 224, 3)) -> tf.keras.Model:
+def generate_model(num_classes:int, input_shape:tuple=(224, 224, 3)) -> tf.keras.Model:
     """
     Generate a model for image classification using transfer learning.
 
@@ -37,14 +37,15 @@ def generate_model(pre_trained_model_url:str, num_classes:int, input_shape:tuple
 
 
     # Define model
-    inputs = tf.keras.Input(shape=(224, 224, 3))
+    inputs = tf.keras.Input(shape=input_shape)
     x = base_model(inputs, training=False)
     x = tf.keras.layers.GlobalAveragePooling2D()(x)
-    x = tf.keras.layers.Dropout(0.2)(x)
+    x = tf.keras.layers.Dense(1024)(x)
+    x = tf.keras.layers.Dropout(0.3)(x)
     x = tf.keras.layers.Dense(512)(x)
-    x = tf.keras.layers.Dropout(0.5)(x)
+    x = tf.keras.layers.Dropout(0.3)(x)
     x = tf.keras.layers.Dense(256)(x)
-    outputs = tf.keras.layers.Dense(11, activation='softmax')(x)
+    outputs = tf.keras.layers.Dense(num_classes, activation='softmax')(x)
 
     model = tf.keras.Model(inputs, outputs)
 
