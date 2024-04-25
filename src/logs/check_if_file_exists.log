@@ -23,3 +23,35 @@ INFO:root:Execution time: 0.007339278856913249 minutes
 WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
 INFO:root:All files found!
 INFO:root:Execution time: 0.007201655705769857 minutes
+INFO:root:All files found!
+INFO:root:Execution time: 0.006839672724405925 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.006414190928141276 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.006278411547342936 minutes
+INFO:root:All files found!
+INFO:root:Execution time: 0.006109404563903809 minutes
+INFO:root:All files found!
+INFO:root:Execution time: 0.0065465569496154785 minutes
+INFO:root:All files found!
+INFO:root:Execution time: 0.006286823749542236 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.00556951363881429 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.007356397310892741 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.007079422473907471 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.007557264963785807 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+INFO:root:All files found!
+INFO:root:Execution time: 0.007775731881459554 minutes
+WARNING:matplotlib.image:Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
