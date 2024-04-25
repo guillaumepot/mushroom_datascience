@@ -5,6 +5,7 @@ from datasetcsvpage import load_dataset_csv_page
 from dataanalysispage import load_data_visualization_page
 from imagevizpage import load_image_viz_page
 from modelizationpage import load_modelization_page
+from evaluationpage import load_evaluation_page
 
 from streamlit_vars import addSidebarFooter
 
@@ -51,6 +52,9 @@ if page == pages[3]:
 if page == pages[4]:
     load_modelization_page()
 
+
+if page == pages[5]:
+    load_evaluation_page()
 
 
 ## Sidebar Footer ##

@@ -45,11 +45,16 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
 # Modelization page
 available_models = ["efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1"]
 
-model_url_dict = {
+builded_model_url_dict = {
     "efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1.keras"
 }
 
 
+
+# Evaluation page
+trained_model_url_dict = {
+    "efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1" : "../../storage/models/trained/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained.keras"
+}
 
 
 
