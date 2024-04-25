@@ -184,7 +184,6 @@ def copy_files_to_folder(csv_url:str, column:str, source:str = None, destination
 
 
 
-
 def make_file_list_as_csv(file_name="file_list"):
     """
     Main function to list files in a folder and save the file list to a CSV.
@@ -231,7 +230,6 @@ def make_file_list_as_csv(file_name="file_list"):
     logging.info(f"Saving CSV to: {csv_url}")
     df.to_csv(csv_url, index=False)
     logging.info("CSV saved successfully")
-
 
 
 
