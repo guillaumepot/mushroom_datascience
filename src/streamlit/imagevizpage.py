@@ -18,7 +18,7 @@ cleaned_dataset_top10_species['image_path'] = cleaned_dataset_top10_species['ima
 
 def load_image_viz_page():
     st.title("Image Visualization")
-    st.write("This page show some images depending the set you choose.")
+    st.write("This page shows some images depending the set you choose.")
     
 
     choice =  st.radio('Select Dataset', ['Top 10 species', 'Bad images removed from dataset', 'tf_datasets'])

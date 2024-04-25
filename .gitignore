@@ -21,3 +21,6 @@ storage/models/*
 
 # Ignore mlruns
 storage/mlruns/*
+
+# Ignore imgs
+storage/datas/imgs/*
