@@ -12,40 +12,6 @@ files = [
 ]
 
 [[package]]
-name = "aggdraw"
-version = "1.3.18.post0"
-description = "High quality drawing interface for PIL."
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:4946589d6bea022ce8a27f3f849e59b47524e9f5824e78cb02d9e358949099ff"},
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:f814120a6bd16a8d13185a1e20115efb44ed60f328a8429c50e2fb9c5898eb15"},
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:551cd426344dfd6c582040d0984a27786aee6bddc653336ef2c3fe60789ae334"},
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:822327fb358e8e22428d75b34a81f4639c7d540687b4be971aaa4433d6b9a499"},
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-win_amd64.whl", hash = "sha256:961b791841386467602dafa84f114638856d4f28a29fca08364de28184b020f4"},
-    {file = "aggdraw-1.3.18.post0-cp310-cp310-win_arm64.whl", hash = "sha256:8be05b9842d1428b69949d3ffa5de79ab1294d969ffd5118c917ee561ef8eea9"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:91ee9b7e64223e6f33ee22c27be8b90765e0d3ed10964a5122670dfa9ff2327b"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:b4c6f7ca3be267271911999dfbed629bfb7aa08e8bc580486775c715deb96cf6"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c20eab3e95c981ab4914e44fc9168d6ae2d7443df62a52e42995cc2c5a63a8db"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d6d4209d46b931b41e4343fa3e2b8587916b792dfc188487a27208526e1f30d1"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-win_amd64.whl", hash = "sha256:eed802cff2f1a27ef3c6c5a500b9be4dde909b14c1bda6de9ed09d2fb8ccd6f1"},
-    {file = "aggdraw-1.3.18.post0-cp311-cp311-win_arm64.whl", hash = "sha256:70cf234f80b26cd982bdae25a43b665507ca4099a653ddd3b0a845072c20c1d0"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:f8780a94dd42cd715e749c610e3dda725985c01ba8fa39510cba81093d75e7bb"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:ec77d35f10e34e6e41db2ff17f5796d27f108aeb8a28d0c30dc79a49ab2b5c49"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8ca030d6d5aae6c46a5b3a5ea1fd9d5d2a7f3d1628571180dee668c014cefc1f"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a077fd4c8486e2209ffd02f2e3237c0ee1482674f7f7e1778abdfccf9a025b4a"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-win_amd64.whl", hash = "sha256:6aa8f33ee40f3f44e6e90119110fb02d350e9a72328452a5d715e9c7deb34026"},
-    {file = "aggdraw-1.3.18.post0-cp312-cp312-win_arm64.whl", hash = "sha256:7fbba676fa3bcd71c471ec9627fa8efdff94c9105695955b0173669c4b73d19a"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:ae27eb5d793f148abb3accf9b8649ddb81c9c6487caa91a7ad95634a9594d9ee"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:a947517f397edd2c0d16dcf7d913b6316606eb77db59a2defcc3bc998789bab5"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4699f60e7b23a17a713bf71031dee022acedcd551283c2147484100a50dac632"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:815f6d04b6946bf37fe5561c24a64b3c5ff2a5143f5fa035ec7615266f7b583e"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-win_amd64.whl", hash = "sha256:3c1dd047b24c05dae01db2ee4b56b803dadd17576a60e9191e12abc666083096"},
-    {file = "aggdraw-1.3.18.post0-cp39-cp39-win_arm64.whl", hash = "sha256:fe1263b079b31e2b3d457edfcef4fe46169101c5edbfe893989998bacf697995"},
-    {file = "aggdraw-1.3.18.post0.tar.gz", hash = "sha256:b3fd73f7e1c13e361e165b5b58a23ae270b0a7e2ea63bde1b2521279afc936e2"},
-]
-
-[[package]]
 name = "alembic"
 version = "1.13.1"
 description = "A database migration tool for SQLAlchemy."
@@ -175,28 +141,6 @@ files = [
     {file = "blinker-1.7.0-py3-none-any.whl", hash = "sha256:c3f865d4d54db7abc53758a01601cf343fe55b84c1de4e3fa910e420b438d5b9"},
     {file = "blinker-1.7.0.tar.gz", hash = "sha256:e6820ff6fa4e4d1d8e2747c2283749c3f547e4fee112b98555cdcdae32996182"},
 ]
-
-[[package]]
-name = "bokeh"
-version = "3.4.0"
-description = "Interactive plots and applications in the browser from Python"
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "bokeh-3.4.0-py3-none-any.whl", hash = "sha256:d8d9ba026b734317740f90a8a58502d63c76b96c58752fc421ad4aa04df1fbcd"},
-    {file = "bokeh-3.4.0.tar.gz", hash = "sha256:9ea6bc407b5e7d04ba7a2f07d8f00e8b6ffe02c2368e707f41bb362a9928569a"},
-]
-
-[package.dependencies]
-contourpy = ">=1.2"
-Jinja2 = ">=2.9"
-numpy = ">=1.16"
-packaging = ">=16.8"
-pandas = ">=1.2"
-pillow = ">=7.1.0"
-PyYAML = ">=3.10"
-tornado = ">=6.2"
-xyzservices = ">=2021.09.1"
 
 [[package]]
 name = "cachetools"
@@ -3052,21 +2996,6 @@ wrapt = ">=1.11.0"
 and-cuda = ["nvidia-cublas-cu12 (==12.3.4.1)", "nvidia-cuda-cupti-cu12 (==12.3.101)", "nvidia-cuda-nvcc-cu12 (==12.3.107)", "nvidia-cuda-nvrtc-cu12 (==12.3.107)", "nvidia-cuda-runtime-cu12 (==12.3.101)", "nvidia-cudnn-cu12 (==8.9.7.29)", "nvidia-cufft-cu12 (==11.0.12.1)", "nvidia-curand-cu12 (==10.3.4.107)", "nvidia-cusolver-cu12 (==11.5.4.101)", "nvidia-cusparse-cu12 (==12.2.0.103)", "nvidia-nccl-cu12 (==2.19.3)", "nvidia-nvjitlink-cu12 (==12.3.101)"]
 
 [[package]]
-name = "tensorflow-hub"
-version = "0.16.1"
-description = "TensorFlow Hub is a library to foster the publication, discovery, and consumption of reusable parts of machine learning models."
-optional = false
-python-versions = "*"
-files = [
-    {file = "tensorflow_hub-0.16.1-py2.py3-none-any.whl", hash = "sha256:e10c184b3d08daeafada11ffea2dd46781725b6bef01fad1f74d6634ad05311f"},
-]
-
-[package.dependencies]
-numpy = ">=1.12.0"
-protobuf = ">=3.19.6"
-tf-keras = ">=2.14.1"
-
-[[package]]
 name = "tensorflow-io-gcs-filesystem"
 version = "0.36.0"
 description = "TensorFlow IO"
@@ -3108,22 +3037,6 @@ files = [
 
 [package.extras]
 tests = ["pytest", "pytest-cov"]
-
-[[package]]
-name = "tf-explain"
-version = "0.3.1"
-description = "Interpretability Callbacks for Tensorflow 2.0"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "tf-explain-0.3.1.tar.gz", hash = "sha256:508b53afc1fca3ab26d8e5d92d720a5ce3c1d37cf4479580b2ea7b9f4b7d7ee9"},
-    {file = "tf_explain-0.3.1-py3-none-any.whl", hash = "sha256:91586bfce130a3e2ff6956f86fcda05d034e6eec466ce0adfc6ac5f9d52fb3ad"},
-]
-
-[package.extras]
-docs = ["sphinx (>=2.1.2)", "sphinx-rtd-theme (>=0.4.3)"]
-publish = ["bumpversion (>=0.5.3)", "twine (>=1.13.0)"]
-tests = ["black (>=19.3b0)", "pylint (>=2.3.1)", "pytest (>=5.0.1)", "pytest-cov (>=2.7.1)", "pytest-mock (>=1.10.4)", "pytest-timeout (>=1.3.3)", "tox (>=3.13.2)"]
 
 [[package]]
 name = "tf-keras"
@@ -3245,22 +3158,6 @@ brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
-
-[[package]]
-name = "visualkeras"
-version = "0.0.2"
-description = "Architecture visualization of Keras models"
-optional = false
-python-versions = ">=3.6"
-files = [
-    {file = "visualkeras-0.0.2-py3-none-any.whl", hash = "sha256:83526e80faa4ae9c39cceee9158714f3166e91e2a8df7272569362ebc1cc827e"},
-    {file = "visualkeras-0.0.2.tar.gz", hash = "sha256:8cd900884da9f39e8de1e431fa3a42686af435cceab83d013b1c17a5ac9c1b97"},
-]
-
-[package.dependencies]
-aggdraw = ">=1.3.11"
-numpy = ">=1.18.1"
-pillow = ">=6.2.0"
 
 [[package]]
 name = "waitress"
@@ -3440,17 +3337,6 @@ files = [
 ]
 
 [[package]]
-name = "xyzservices"
-version = "2023.10.1"
-description = "Source of XYZ tiles providers"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "xyzservices-2023.10.1-py3-none-any.whl", hash = "sha256:6a4c38d3a9f89d3e77153eff9414b36a8ee0850c9e8b85796fd1b2a85b8dfd68"},
-    {file = "xyzservices-2023.10.1.tar.gz", hash = "sha256:091229269043bc8258042edbedad4fcb44684b0473ede027b5672ad40dc9fa02"},
-]
-
-[[package]]
 name = "zipp"
 version = "3.18.1"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -3468,4 +3354,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4fbd5a53b827fb4c173b71058625b86286a5128618fdeff8fc78629d19a3c568"
+content-hash = "ebe1e1f8911bc63813c1baecb543ad3881311efc07e47a4bdea71a8e34eef31a"

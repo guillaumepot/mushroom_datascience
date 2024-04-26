@@ -13,14 +13,10 @@ seaborn = "^0.13.2"
 ipykernel = "^6.29.3"
 opencv-python = "^4.9.0.80"
 streamlit = "^1.32.2"
-bokeh = "^3.4.0"
 scikit-learn = "^1.4.1.post1"
-tensorflow-hub = "^0.16.1"
 tf-keras = "^2.16.0"
 mlflow = "^2.12.1"
 tensorflow = "^2.16.1"
-visualkeras = "^0.0.2"
-tf-explain = "^0.3.1"
 
 
 [build-system]
