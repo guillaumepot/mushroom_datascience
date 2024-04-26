@@ -8,6 +8,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import tensorflow as tf
+from sklearn.metrics import classification_report, confusion_matrix
+import random
+
+
 
 """
 Common vars
@@ -43,19 +47,27 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
 
 
 # Modelization page
-available_models = ["efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1"]
+available_models = ["efficientnetv2_21k with custom top layers - V1", "efficientnetv2_21k with custom top layers - V1 - Fine Tuned"]
 
 builded_model_url_dict = {
-    "efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1.keras"
+    "efficientnetv2_21k with custom top layers - V1" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1.keras",
+    "efficientnetv2_21k with custom top layers - V1 - Fine Tuned" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1_fine_tuned.keras"  
 }
-
 
 
 # Evaluation page
 trained_model_url_dict = {
-    "efficientnetv2_21k_finetuned_1k_v1 with custom top layers - V1" : "../../storage/models/trained/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained.keras"
+    "efficientnetv2_21k with custom top layers - V1" : "../../storage/models/trained/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained.keras",
+    "efficientnetv2_21k with custom top layers - V1 - Fine Tuned" : "../../storage/models/trained/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained_fine_tuned.keras"    
 }
 
+history_model_url_dict = {
+    "efficientnetv2_21k with custom top layers - V1" : "../../storage/models/histories/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained_history.pickle",
+    "efficientnetv2_21k with custom top layers - V1 - Fine Tuned" : "../../storage/models/histories/generated_model_efficientnetv2_21k_finetuned_1k_v1_trained_fine_tuned_history.pickle"
+}
+
+test_dataset_path = "../../storage/datas/tf_datasets/test_dataset"
+encoded_labels_json_path = "../../storage/datas/json/encoded_labels.json"
 
 
 """
@@ -359,3 +371,187 @@ def displayFeaturesCharts(df:pd.DataFrame) -> None:
     for ax, attr, color, title in zip(axes.flatten(), attributes, colors, titles):
         plotHist(ax, attr, df, color, title)
     st.pyplot(fig)
+
+
+
+def plot_training_history(history) -> None:
+    """
+    Plots the training history of a model.
+
+    Parameters:
+    - history (dict): A dictionary containing the training history of the model.
+
+    Returns:
+    - None
+
+    """
+    # Accuracy & Val_accuracy plot (training model)
+    plt.figure(figsize=(12, 4))
+    plt.subplot(1, 2, 1)
+    plt.plot(history['accuracy'], label='Training Accuracy')
+    plt.plot(history['val_accuracy'], label='Validation Accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy')
+    plt.legend()
+
+    # Training loss & Val loss plot (training model)
+    plt.subplot(1, 2, 2)
+    plt.plot(history['loss'], label='Training Loss')
+    plt.plot(history['val_loss'], label='Validation Loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+
+    # Display the plot in Streamlit
+    st.pyplot(plt)
+
+
+
+import numpy as np
+
+def get_y_test(test_datas) -> np.ndarray:
+    """
+    Get the ground truth labels from the test data.
+
+    Args:
+        test_datas (list): A list of tuples containing the test data and labels.
+
+    Returns:
+        np.ndarray: An array of ground truth labels.
+
+    """
+    y_test = []
+    for _, label in test_datas:
+        y_test.extend(np.argmax(label.numpy(), axis=-1)) 
+    y_test = np.array(y_test)
+    return y_test
+
+
+
+def display_classifciation_report(y_test, y_pred) -> None:
+    """
+    Display the classification report for a given set of predictions.
+
+    Parameters:
+    - y_test (array-like): The true labels of the test data.
+    - y_pred (array-like): The predicted labels for the test data.
+    - test_datas (array-like): The test data used for prediction.
+
+    Returns:
+    None
+    """
+    # Get y_pred classes (argmax)
+    y_pred_classes = np.argmax(y_pred, axis=1)
+
+    # Generate classification report
+    report = classification_report(y_test, y_pred_classes)
+    report_df = pd.DataFrame(report).transpose()
+    st.table(report_df)
+
+
+
+def display_confusion_matrix(y_test, y_pred) -> None:
+    """
+    Display the confusion matrix and normalized confusion matrix for a classification model.
+
+    Parameters:
+    y_test (array-like): The true labels of the test data.
+    y_pred (array-like): The predicted labels of the test data.
+    test_datas (array-like): The test data used for prediction.
+
+    Returns:
+    None
+    """
+    y_pred_classes = np.argmax(y_pred, axis=1)
+    # Confusion Matrix
+    confusion_mtx = confusion_matrix(y_test, y_pred_classes)
+    confusion_mtx_normalized = confusion_mtx.astype('float') / confusion_mtx.sum(axis=1)[:, np.newaxis]
+
+    # Plot
+    plt.figure(figsize=(8, 8))
+    sns.heatmap(confusion_mtx, annot=True, fmt='d', cmap='Blues')
+    plt.xlabel('Predictions')
+    plt.ylabel('True labels')
+    plt.title('Confusion Matrix')
+    st.pyplot(plt)  # Affiche le graphique sur Streamlit
+
+    # normalized CM plot
+    plt.figure(figsize=(8, 8))
+    sns.heatmap(confusion_mtx_normalized, annot=True, cmap='Greens')
+    plt.xlabel('Predictions')
+    plt.ylabel('True labels')
+    plt.title('Normalized Confusion Matrix')
+    st.pyplot(plt)
+
+
+
+def display_test_images_and_get_predictions(test_datas) -> None:
+    """
+    Display test images and their corresponding predictions.
+
+    Args:
+        test_datas (Iterable): The test dataset containing images and labels.
+
+    Returns:
+        None
+    """
+    # Convert dataset to list
+    test_data_list = list(test_datas)
+
+    # Choose 9 randoms indexes
+    random_indices = random.sample(range(len(test_data_list)), 9)
+
+    # Display images & labels
+    fig, axes = plt.subplots(3, 3, figsize=(10, 10))
+
+    for i, ax in enumerate(axes.flat):
+        img, label = test_data_list[random_indices[i]]
+        img = img.numpy()
+
+        random_index = random.randint(0, len(img) - 1)
+        img = img[random_index]
+
+        true_label = encoded_labels[np.argmax(label)]
+        predicted_label = encoded_labels[y_pred_classes[random_indices[i]]]
+
+        ax.imshow(img)
+        ax.set_title(f"True: {true_label}\nPred: {predicted_label}")
+
+    plt.tight_layout()
+    st.pyplot(fig)  # Display the figure in Streamlit
+
+
+
+def get_img_prediction(uploaded_file, model, encoded_labels) -> None:
+    """
+    Get the image prediction using the provided model and display the result in Streamlit.
+
+    Parameters:
+    - uploaded_file: The uploaded image file.
+    - model: The pre-trained model used for prediction.
+    - encoded_labels: The encoded labels used for mapping the predicted class.
+
+    Returns:
+    None
+    """
+    # load img, pre-process
+    image_data = uploaded_file
+    img_web = cv2.imdecode(np.frombuffer(image_data, np.uint8), cv2.IMREAD_COLOR)
+    img_web = cv2.cvtColor(img_web, cv2.COLOR_BGR2RGB)
+    img_web = cv2.resize(img_web, (224, 224))
+
+    w = image.img_to_array(img_web)
+    w = np.expand_dims(w, axis=0)
+    w = preprocess_input(w)
+        
+    # Predict
+    web_prediction = model.predict(w)
+    index_classe_web = np.argmax(web_prediction)
+    nom_classe_predite = encoded_labels[index_classe_web]
+
+    # Show img with predicted class
+    fig, ax = plt.subplots(figsize=(4, 4))
+    ax.imshow(img_web)
+    ax.set_title(f'Predicted class : {nom_classe_predite}')
+    ax.axis('off')
+    st.pyplot(fig)  # Display the figure in Streamlit

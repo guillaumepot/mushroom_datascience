@@ -1,4 +1,4 @@
-# A Datascience Projet 
+# A Deep Learning classifier for Datascience Projet 
 
 **OVERVIEW**
 
@@ -19,159 +19,107 @@ This project is a prototype, not designed for production.
 
 
 ## Table of content
-- [1. Repository](#1-repository)
-- [2. Prerequisites](#1-prerequisites)
-    - [2.1. Venv](#11-venv)
-    - [2.2. Configuration Defaults](#42-configuration-defaults)
-
+- [1. Repository Architecture](#1-repository-architecture)
+- [2. Prerequisites](#2-prerequisites)
+    - [2.1. Venv](#21-venv)
+    - [2.2. Files](#22-files)
+    - [2.3. Generate Objects ](#22-generate-objects)
+- [3. Prerequisites](#3-prerequisites)
 
 ## 1. Repository Architecture
 
     /   
     │
-    ├── data_ml_functions
-    │       │  
-    │       ├── common_variables.py             <-
-    │       │
-    │       ├── archive_datas_source.py         <- 
-    │       │
-    │       ├── scrap_match_history.py          <-
-    │       ├── scrap_bookmakers_odds.py        <-
-    │       ├── geckodriver                     <-
-    │       │
-    │       ├── data_preprocessing_matches.py   <-
-    │       │
-    │       ├── train_model.py                  <-
-    │       │
-    │       ├── model_predictions.py            <-
-    │       │
-    │       └── unit_test.py                    <-
+    ├── old  < Contains old report from first project iteration (French)
+    |
     │
-    └── storage
-            │  
-            ├── data                                        <-
-            │   │
-            │   ├── archives                                <-
-            │   │   │
-            │   │   ├── {yyyy}-{mm}-{dd}                    <-
-            │   │   │       ├── {championship}{1}_odds.csv  <-
-            │   │   │       ├── {championship}{2}_odds.csv  <-
-            │   │   │       └── main_leagues_data.zip       <-
-            │   │   │            
-            │   │   └── {yyyy}-{mm}-{dd}                    <-
-            │   │           ├── {championship}{1}_odds.csv  <-
-            │   │           ├── {championship}{2}_odds.csv  <-
-            │   │           └── main_leagues_data.zip       <-
-            │   │
-            │   ├── clean                                   <-
-            │   │   │
-            │   │   ├── {championship}{1}                   <-
-            │   │   │       ├── match_data_for_modeling.csv <-
-            │   │   │       ├── odds.csv                    <-
-            │   │   │       ├── statsAwayTeam.csv           <-
-            │   │   │       └── statsHomeTeam.csv           <-
-            │   │   │
-            │   │   └── {championship}{2}                   <-
-            │   │           ├── match_data_for_modeling.csv <-
-            │   │           ├── odds.csv                    <-
-            │   │           ├── statsAwayTeam.csv           <-
-            │   │           └── statsHomeTeam.csv           <-
-            │   │
-            │   ├── raw                                     <-
-            │   │   ├── {championship}{1}.csv               <-
-            │   │   ├── {championship}{1}_odds.csv          <-
-            │   │   │       
-            │   │   ├── {championship}{2}.csv               <-
-            │   │   ├── {championship}{2}_odds.csv          <-
-            │   │   │       
-            │   │   ├── {championship}{3}.csv               <-
-            │   │   │       
-            │   │   ├── {championship}{4}.csv               <-
-            │   │   │       
-            │   │   ├── {championship}{5}.csv               <-
-            │   │
-            │   └── source                                  <-
-            │       ├── {championship}{1}_odds.csv          <-
-            │       ├── {championship}{2}_odds.csv          <-
-            │       │       
-            │       └── main_leagues_data.zip               <-
-            │
-            ├── database                                    <-
-            │   └── userDB.json                             <-
-            │
-            ├── models                                      <-
-            │   ├── {championship}{1}_{model}.pkl           <-
-            │   └── {championship}{2}_{model}.pkl           <-
-            │
-            └── mlflow                                      <-
-                └── mlruns                                  <-
-                    │
-                    ├── {num}                               <-
-                    │   │
-                    │   └── {ref}                           <-
-                    │       │
-                    │       ├── artifacts
-                    │       │   ├── confusion_matrix.png                <-
-                    │       │   └── artifacts_{championship}_{model}    <-            
-                    │       │       ├── conda.yaml                      <-
-                    │       │       ├── input_example.json              <-
-                    │       │       ├── MLmodel                         <-
-                    │       │       ├── model.pkl                       <-
-                    │       │       ├── python_env.yaml                 <-      
-                    │       │       └── requirements.txt                <-
-                    │       │
-                    │       ├── metrics                     <-
-                    │       │   ├── accuracy                <-
-                    │       │   ├── f1                      <-
-                    │       │   └── recall                  <-
-                    │       │
-                    │       ├── params                      <-
-                    │       │   ├── C                       <-
-                    │       │   ├── gamma                   <-
-                    │       │   ├── kernel                  <-
-                    │       │   └── probability             <-
-                    │       │
-                    │       ├── tags
-                    │       │   ├── mlflow.log-model.history    <-
-                    │       │   ├── mlflow.runName              <-
-                    │       │   ├── mlflow.source.name          <-
-                    │       │   ├── mlflow.source.type          <-
-                    │       │   ├── mlflow.user                 <- 
-                    │       │   └── quality                     <-
-                    │       │
-                    │       └── meta.yaml                   <-
-                    │
-                    └── models                              <-
-                        │
-                        ├── {championship}{1}_{model}       <-
-                        │   │
-                        │   ├── aliases                     <-
-                        │   │   └── production              <-
-                        │   │
-                        │   ├── version-{1}                 <-
-                        │   │   ├── tags                    <-
-                        │   │   │   └── quality             <-
-                        │   │   │
-                        │   │   └── meta.yaml               <-
-                        │   │           
-                        │   └── meta.yaml                   <-
-                        │
-                        └── {championship}{2}_{model}       <-
-                            │
-                            ├── aliases                     <-
-                            │   └── production              <-
-                            │
-                            ├── version-{1}                 <-
-                            │   ├── tags                    <-
-                            │   │   └── quality             <-
-                            │   │
-                            │   └── meta.yaml               <-
-                            │           
-                            └── meta.yaml                   <-
-
-
-
-
+    ├── src
+    |       │  
+    |       ├── logs < Contains logs generated by some functions (utils)
+    |       |            
+    |       ├── notebooks                            
+    |       │   │
+    |       │   ├── 1-dataset_clean.ipynb           < Used to clean the baase dataset
+    |       │   │                                   
+    |       │   ├── 2-data_analysis.ipynb           < Used to analyse datas
+    |       │   │
+    |       │   ├── 3-classification_choice.ipynb   < Used to find & justify classifiction choice among the libing classification
+    |       │   │
+    |       │   ├── 4-file_sort.ipynb               < Used to sort the .jpg files according to the csv files
+    |       │   │
+    |       │   ├── 5-imgs_analysis.ipynb           < Used to analyse images (colors, dimensions)
+    |       │   │ 
+    |       │   ├── 6-data_preprocessing.ipynb      < Used to pre-process datas & generate tf datasets
+    |       │   │
+    |       │   ├── 8-model_train.ipynb             < Used to train the model(s)
+    |       │   │
+    |       │   └── 9-model_evaluate.ipynb          < Used to evaluate the model(s)
+    |
+    |
+    ├── streamlit
+    |       ├── (deprecated)classificationchoicepage.py < Deprecated page about classification choice
+    |       |
+    |       ├── dataanalysispage.py < Streamlit page for data analysis
+    |       |
+    |       ├── datasetcsvpage.py < Streamlit page for CSV display
+    |       |
+    |       ├── evaluationpage.py < Streamlit page for model evaluation
+    |       |
+    |       ├── homepage.py < Streamlit home page
+    |       |
+    |       ├── imagevizpage.py < Streamlit page for image visualization
+    |       |
+    |       ├── main.py < Streamlit main (call pages)
+    |       |
+    |       ├── modelizationpage.py < Streamlit page for display model(s)
+    |       |
+    |       ├── streamlit_vars.py < Streamlit used in pages variables python file
+    |       |
+    |       └── streamlit.env < .env file for a Streamlit container (not done)
+    |
+    ├── utils
+    |       │  
+    |       ├── __init__.py < Python file to use utils as a package
+    |       |            
+    |       ├── file_processing.py < Functions to sort & move files
+    |       |                           
+    |       ├── img_preprocessing.py < Functions to pre-process imgs files & generate tf datasets
+    |       |                           
+    |       ├── import_df.py < Functions to import pandas DF
+    |       |                           
+    |       ├── model_generation.py < Functions to generate a keras model
+    │
+    ├── storage
+    |       │  
+    |       ├── datas            < Contains logs generated by some functions (utils)
+    |       │   │
+    |       │   ├── csv          < Used to clean the baase dataset
+    |       │   │                                   
+    |       │   ├── img          < Used to analyse datas
+    |       │   │                                   
+    |       │   ├── json         < Used to analyse datas
+    |       │   │                                   
+    |       │   └── tf_datasets  < Used to analyse datas
+    |       |                
+    |       ├── mlruns < Contains mlruns (autologged model fitting)                            
+    |       │  
+    |       ├── models < Contains logs generated by some functions (utils)
+    |       │   │
+    |       │   ├── builded          < Builded model(s) from 7-modelization.ipynb
+    |       │   │                                                          
+    |       │   ├── histories        < Training histories
+    |       │   │                                   
+    |       │   ├── model_checkpoint < Model weights (callback)
+    |       │   │
+    |       │   └── trained          < trained model(s)
+    │
+    ├── poetry.lock < Environment file for poetry
+    │
+    ├── pyproject.toml <  Conf file for poetry
+    │
+    ├── README.md < This current file
+    │
+    └── requirementstxt < Venv dependencies
 
 
 
@@ -207,7 +155,7 @@ The list below contains all the dependencies you need :
 
 
 
-### 2.2 Copy & unzip files
+### 2.2 Files
 - Get some file from my shared link :
 
     This link contains some files you have to unzip here if you want to execute all notebooks :
@@ -217,20 +165,12 @@ The list below contains all the dependencies you need :
     - Copy observations_mushroom.csv here : ../../storage/datas/csv/raw/**observations_mushroom.csv**
 
 
-### 3. Genereate objects 
+### 2.3. Generate Objects 
 **Required**
 - Generate tf datasets using notebook 6-data_preprocessing.ipynb
 - Generate a model using 7-modelization.ipynb
 
 
-
-
-
-
-
-
-
-
-
-# Start Streamlit
-Execute script start_streamlit.sh (ajouter le dezip de datas csv source vers datas csv raw et generer les TF datasets)
+## 3. Start Streamlit
+- Navigate to ./src/stramlit
+- Run streamlit with the command : streamlit run main.py
