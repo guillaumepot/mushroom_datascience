@@ -1,11 +1,12 @@
 import streamlit as st
 import tensorflow as tf
-import io
-import sys
+import pickle
+import numpy as np
+import json
 
 
 # Variables
-from streamlit_vars import available_models, trained_model_url_dict, test_dataset_path, encoded_labels_json_path
+from streamlit_vars import available_models, trained_model_url_dict, test_dataset_path, encoded_labels_json_path, history_path_dict
 # Functions
 from streamlit_vars import plot_training_history, get_y_test, display_classifciation_report, display_confusion_matrix, display_test_images_and_get_predictions, get_img_prediction
 
@@ -38,6 +39,7 @@ def load_evaluation_page():
     # Get predictions
     y_test = get_y_test()
     y_pred = model.predict(test_datas)
+    y_pred_classes = np.argmax(y_pred, axis=1)
 
     # Display classification report
     display_classifciation_report(y_test, y_pred)
@@ -51,7 +53,7 @@ def load_evaluation_page():
     encoded_labels = {v: k for k, v in encoded_labels.items()}
 
     # Display images and predictions
-    display_test_images_and_get_predictions(test_datas)
+    display_test_images_and_get_predictions(test_datas, encoded_labels, y_pred_classes)
 
 
     # Get image prediction

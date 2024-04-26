@@ -10,6 +10,8 @@ import seaborn as sns
 import tensorflow as tf
 from sklearn.metrics import classification_report, confusion_matrix
 import random
+import cv2
+from keras.preprocessing import image
 
 
 
@@ -485,7 +487,7 @@ def display_confusion_matrix(y_test, y_pred) -> None:
 
 
 
-def display_test_images_and_get_predictions(test_datas) -> None:
+def display_test_images_and_get_predictions(test_datas, encoded_labels, y_pred_classes) -> None:
     """
     Display test images and their corresponding predictions.
 
@@ -542,7 +544,7 @@ def get_img_prediction(uploaded_file, model, encoded_labels) -> None:
 
     w = image.img_to_array(img_web)
     w = np.expand_dims(w, axis=0)
-    w = preprocess_input(w)
+    #w = preprocess_input(w)
         
     # Predict
     web_prediction = model.predict(w)
