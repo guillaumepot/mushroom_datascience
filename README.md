@@ -156,7 +156,7 @@ The list below contains all the dependencies you need :
 
 
 ### 2.2 Files
-- Get some file from my shared link ()
+- Get some file from my shared link (https://1drv.ms/f/s!AneSkj0oSgT5yepVTERjwzCw7BKY6g?e=eSYxKR) (pw:  f16ea51f*f64FFF6*-F16f165dz)
 
     This link contains some files you have to unzip here if you want to execute all notebooks :
     - Unzip cleaned_dataset here : ../../storage/datas/imgs/**cleaned_dataset/**
@@ -166,8 +166,10 @@ The list below contains all the dependencies you need :
 
 
 ### 2.3. Generate Objects 
-**Optional**
+**Required**
 - Generate tf datasets using notebook 6-data_preprocessing.ipynb
+
+**Optional**
 - Generate a model using 7-modelization.ipynb
 
 
