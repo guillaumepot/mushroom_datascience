@@ -23,7 +23,7 @@ This project is a prototype, not designed for production.
 - [2. Prerequisites](#2-prerequisites)
     - [2.1. Venv](#21-venv)
     - [2.2. Files](#22-files)
-    - [2.3. Generate Objects ](#22-generate-objects)
+    - [2.3. Generate Objects](#22-generate-objects)
 - [3. Prerequisites](#3-prerequisites)
 
 ## 1. Repository Architecture
@@ -129,8 +129,8 @@ This project is a prototype, not designed for production.
 - Create a venv according to requirements.txt or pyproject.toml (poetry)
 
 The list below contains all the dependencies you need :
-    Requirements  
-    │
+
+    
     ├── python 3.10
     │
     ├── pandas = "^2.2.1"
