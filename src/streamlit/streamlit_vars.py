@@ -49,11 +49,11 @@ num_unique_values = {'phylum': None,       # Num unique values to display on eac
 
 
 # Modelization page
-available_models = ["efficientnetv2_21k with custom top layers - V1", "efficientnetv2_21k with custom top layers - V1 - Fine Tuned"]
+available_builded_models = ["efficientnetv2_21k with custom top layers - V1"]
+available_trained_models = ["efficientnetv2_21k with custom top layers - V1", "efficientnetv2_21k with custom top layers - V1 - Fine Tuned"]
 
 builded_model_url_dict = {
     "efficientnetv2_21k with custom top layers - V1" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1.keras",
-    "efficientnetv2_21k with custom top layers - V1 - Fine Tuned" : "../../storage/models/builded/generated_model_efficientnetv2_21k_finetuned_1k_v1_fine_tuned.keras"  
 }
 
 
@@ -430,7 +430,7 @@ def get_y_test(test_datas) -> np.ndarray:
 
 
 
-def display_classifciation_report(y_test, y_pred) -> None:
+def display_classification_report(y_test, y_pred) -> None:
     """
     Display the classification report for a given set of predictions.
 
@@ -446,7 +446,7 @@ def display_classifciation_report(y_test, y_pred) -> None:
     y_pred_classes = np.argmax(y_pred, axis=1)
 
     # Generate classification report
-    report = classification_report(y_test, y_pred_classes)
+    report = classification_report(y_test, y_pred_classes, output_dict = True)
     report_df = pd.DataFrame(report).transpose()
     st.table(report_df)
 
@@ -520,40 +520,4 @@ def display_test_images_and_get_predictions(test_datas, encoded_labels, y_pred_c
         ax.set_title(f"True: {true_label}\nPred: {predicted_label}")
 
     plt.tight_layout()
-    st.pyplot(fig)  # Display the figure in Streamlit
-
-
-
-def get_img_prediction(uploaded_file, model, encoded_labels) -> None:
-    """
-    Get the image prediction using the provided model and display the result in Streamlit.
-
-    Parameters:
-    - uploaded_file: The uploaded image file.
-    - model: The pre-trained model used for prediction.
-    - encoded_labels: The encoded labels used for mapping the predicted class.
-
-    Returns:
-    None
-    """
-    # load img, pre-process
-    image_data = uploaded_file
-    img_web = cv2.imdecode(np.frombuffer(image_data, np.uint8), cv2.IMREAD_COLOR)
-    img_web = cv2.cvtColor(img_web, cv2.COLOR_BGR2RGB)
-    img_web = cv2.resize(img_web, (224, 224))
-
-    w = image.img_to_array(img_web)
-    w = np.expand_dims(w, axis=0)
-    #w = preprocess_input(w)
-        
-    # Predict
-    web_prediction = model.predict(w)
-    index_classe_web = np.argmax(web_prediction)
-    nom_classe_predite = encoded_labels[index_classe_web]
-
-    # Show img with predicted class
-    fig, ax = plt.subplots(figsize=(4, 4))
-    ax.imshow(img_web)
-    ax.set_title(f'Predicted class : {nom_classe_predite}')
-    ax.axis('off')
     st.pyplot(fig)  # Display the figure in Streamlit

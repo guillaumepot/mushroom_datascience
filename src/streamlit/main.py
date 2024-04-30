@@ -1,11 +1,11 @@
 import streamlit as st
 
-from homepage import load_home_page
-from datasetcsvpage import load_dataset_csv_page
-from dataanalysispage import load_data_visualization_page
-from imagevizpage import load_image_viz_page
-from modelizationpage import load_modelization_page
-from evaluationpage import load_evaluation_page
+from home_page import load_home_page
+from datasetcsv_page import load_dataset_csv_page
+from dataanalysis_page import load_data_visualization_page
+from imageviz_page import load_image_viz_page
+from modelization_page import load_modelization_page
+from evaluation_page import load_evaluation_page
 
 from streamlit_vars import addSidebarFooter
 

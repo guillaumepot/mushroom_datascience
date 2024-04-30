@@ -5,7 +5,7 @@ import sys
 
 
 # Variables
-from streamlit_vars import available_models, builded_model_url_dict
+from streamlit_vars import available_builded_models, builded_model_url_dict
 
 
 
@@ -14,7 +14,7 @@ def load_modelization_page():
     st.write("This page shows some generated models ready to train on the dataset")
 
     # Select model
-    s = st.selectbox('Model', available_models)
+    s = st.selectbox('Model', available_builded_models)
     model_url = builded_model_url_dict[s]
 
     # Load model
