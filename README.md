@@ -1,5 +1,13 @@
 # A Deep Learning classifier for Datascience Projet 
 
+
+
+<img src="./media/mushroom_img.jpeg" width="350" height="350">
+
+
+
+
+
 **OVERVIEW**
 
 This project was initially realized as a "red thread" project while I was following a Datascientist diploma. After a few weeks, I decided to add a soft update to clean the code.
@@ -27,7 +35,7 @@ This project is a prototype, not designed for production.
 - [3. Prerequisites](#3-prerequisites)
 
 ## 1. Repository Architecture
-
+```
     /   
     │
     ├── old  < Contains old report from first project iteration (French)
@@ -120,7 +128,7 @@ This project is a prototype, not designed for production.
     ├── README.md < This current file
     │
     └── requirementstxt < Venv dependencies
-
+```
 
 
 ## 2. Prerequisites
@@ -156,7 +164,7 @@ The list below contains all the dependencies you need :
 
 
 ### 2.2 Files
-- Get some file from my shared link (https://1drv.ms/f/s!AneSkj0oSgT5yepVTERjwzCw7BKY6g?e=eSYxKR) (pw:  f16ea51f*f64FFF6*-F16f165dz)
+- Get some file from my shared link (*link no longer available, please pm me on LinkedIn or mail to get a new one*)
 
     This link contains some files you have to unzip here if you want to execute all notebooks :
     - Unzip cleaned_dataset here : ../../storage/datas/imgs/**cleaned_dataset/**
@@ -174,5 +182,5 @@ The list below contains all the dependencies you need :
 
 
 ## 3. Start Streamlit
-- Navigate to ./src/stramlit
+- Navigate to ./src/streamlit
 - Run streamlit with the command : streamlit run main.py
